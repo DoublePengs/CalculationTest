@@ -19,11 +19,8 @@ import android.widget.ImageButton;
 public class MainActivity extends AppCompatActivity {
     NavController controller;
     MyViewModel myViewModel;
+
     @Override
-
-
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -33,20 +30,20 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this,controller);
         //
 
-        final Intent intent  = new Intent(MainActivity.this,MyService.class);
-        ImageButton imageButton = findViewById(R.id.play);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-           public void onClick(View v) {
-                if(MyService.isPlay == false){//若音乐没有播放，则启动服务，修改图标
-                    startService(intent);//启动服务
-                    ((ImageButton)v).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_volume_up_black_24dp));
-                }else{//否则停止服务，修改图标
-                    stopService(intent);
-                    ((ImageButton)v).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_volume_off_black_24dp));
-                }
-            }
-        });
+//        final Intent intent  = new Intent(MainActivity.this,MyService.class);
+//        ImageButton imageButton = findViewById(R.id.play);
+//        imageButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//           public void onClick(View v) {
+//                if(MyService.isPlay == false){//若音乐没有播放，则启动服务，修改图标
+//                    startService(intent);//启动服务
+//                    ((ImageButton)v).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_volume_up_black_24dp));
+//                }else{//否则停止服务，修改图标
+//                    stopService(intent);
+//                    ((ImageButton)v).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_volume_off_black_24dp));
+//                }
+//            }
+//        });
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_title, container, false);*/
     }
@@ -79,11 +76,14 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onSupportNavigateUp();
     }
+
     //
+    @Override
     protected void onStart() {
         super.onStart();
-        startService(new Intent(MainActivity.this,MyService.class));
+        startService(new Intent(MainActivity.this, MyService.class));
     }
+
     @Override
     public void onBackPressed() {
         onSupportNavigateUp();

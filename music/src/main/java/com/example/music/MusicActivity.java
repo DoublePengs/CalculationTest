@@ -8,14 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity {
+public class MusicActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_music);
         //服务的启动和停止
-        final Intent intent  = new Intent(MainActivity.this,MyService.class);
+        final Intent intent  = new Intent(MusicActivity.this,MyService.class);
         ImageButton imageButton = findViewById(R.id.play);
 
 
@@ -38,6 +38,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        startService(new Intent(MainActivity.this,MyService.class));
+        startService(new Intent(MusicActivity.this,MyService.class));
     }
 }
